@@ -1,16 +1,16 @@
 package main
 
 import (
-	"financialExchange/storage"
 	"financialExchange/enum"
+	"financialExchange/storage"
 	"fmt"
 	"log/slog"
 	"os"
-	"uuid"
 	"time"
+	"uuid"
 )
 
-func main(){
+func main() {
 	options := slog.HandlerOptions{
 		Level: slog.LevelInfo,
 	}
@@ -35,7 +35,6 @@ func main(){
 	//  slog.String("UUID", traderID.String()),
 	// slog.Float64("Начальный баланс", 50000.0004))
 
-
 	// if balance, ok := traderStore.Get(traderID); ok{
 	// 	logger.Info("поиск в хранилище:",
 	//  	slog.String("найден трейдер с UUID", traderID.String()),
@@ -50,44 +49,43 @@ func main(){
 	uuidOrder1 := uuid.NewV7()
 	uuidOrder2 := uuid.NewV7()
 
-	orderBuy := 	enum.Order{
-						ID: uuidOrder1,
-						TraderID: uuid.NewV4(),
-						Side: enum.SideBuy,
-						Type: enum.OrderTypeLimit,
-						Symbo: "USD",
-						Price: 1000.00,
-						Quantity: 2.00,
-						Filled: 0.00,
-						Status: enum.OrderStatusNew,
-						CreatedAt: time.Now().UTC(),
-						UpdatedAt: time.Now().UTC(),
-							}
+	orderBuy := enum.Order{
+		ID:        uuidOrder1,
+		TraderID:  uuid.NewV4(),
+		Side:      enum.SideBuy,
+		Type:      enum.OrderTypeLimit,
+		Symbo:     "USD",
+		Price:     1000.00,
+		Quantity:  2.00,
+		Filled:    0.00,
+		Status:    enum.OrderStatusNew,
+		CreatedAt: time.Now().UTC(),
+		UpdatedAt: time.Now().UTC(),
+	}
 
-	orderSell := 	enum.Order{
-						ID: uuidOrder2,
-						TraderID: uuid.NewV4(),
-						Side: enum.SideSell,
-						Type: enum.OrderTypeLimit,
-						Symbo: "USD",
-						Price: 1000.00,
-						Quantity: 2.00,
-						Filled: 0.00,
-						Status: enum.OrderStatusNew,
-						CreatedAt: time.Now().UTC(),
-						UpdatedAt: time.Now().UTC(),
-						}
+	orderSell := enum.Order{
+		ID:        uuidOrder2,
+		TraderID:  uuid.NewV4(),
+		Side:      enum.SideSell,
+		Type:      enum.OrderTypeLimit,
+		Symbo:     "USD",
+		Price:     1000.00,
+		Quantity:  2.00,
+		Filled:    0.00,
+		Status:    enum.OrderStatusNew,
+		CreatedAt: time.Now().UTC(),
+		UpdatedAt: time.Now().UTC(),
+	}
 
 	orderBook.Put(uuidOrder1, orderBuy)
 	orderBook.Put(uuidOrder2, orderSell)
 
 	logger.Info("Зарегистрирована сделка",
-			slog.String("Type", orderBuy.Type.String()),
-			slog.Float64("Value:", orderBuy.Price),
-			slog.Float64("Quantity", orderBuy.Quantity),
-			slog.String("Symbo", orderBuy.Symbo),
-			slog.String("TraderID", orderBuy.TraderID.String()))
-								
+		slog.String("Type", orderBuy.Type.String()),
+		slog.Float64("Value:", orderBuy.Price),
+		slog.Float64("Quantity", orderBuy.Quantity),
+		slog.String("Symbo", orderBuy.Symbo),
+		slog.String("TraderID", orderBuy.TraderID.String()))
 
 	fmt.Scanln()
 
