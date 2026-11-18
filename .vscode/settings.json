@@ -1,0 +1,5 @@
+{
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "terminal.integrated.rescaleOverlappingGlyphs": true,
+    "editor.unicodeHighlight.invisibleCharacters": true
+}
